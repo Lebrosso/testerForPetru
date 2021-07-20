@@ -7,7 +7,7 @@ public class TesterGui {
 
     private JFrame mainFrame;
     private JLabel headerLabel;
-    private JLabel statusLabel;
+    private JLabel locationLabel;
     private JPanel controlPanel;
 
       public TesterGui(){
@@ -22,12 +22,13 @@ public class TesterGui {
           });
 
           headerLabel = new JLabel("Choose the message type", JLabel.CENTER);
-          statusLabel = new JLabel("Type in the ibmmq server location", JLabel.CENTER);
+          locationLabel = new JLabel("Type in the ibmmq server location", JLabel.CENTER);
 
+          JTextField txtField = new JTextField(20);
           String[] messageTypes = { MessageType.DATAGRAM.name(), MessageType.REPORT.name(), MessageType.REQUEST.name(), MessageType.REPLY.name(), MessageType.RESPONSE.name() };
 
-          JComboBox petList = new JComboBox(messageTypes);
-          petList.setSelectedIndex(4);
+          JComboBox messageList = new JComboBox(messageTypes);
+          messageList.setSelectedIndex(4);
 
         /*  “host name” - the name of the IBM MQ server
         “service port” - the connection port
@@ -36,7 +37,7 @@ public class TesterGui {
         “queue name” - the specific queue we are testing, our target of message exchanging
         “userid” and “password” needed to open the connection  */
 
-          statusLabel.setSize(350,100);
+          locationLabel.setSize(350,100);
 
           JButton sendButton = new JButton("Send message");
 
@@ -45,8 +46,9 @@ public class TesterGui {
 
           mainFrame.add(headerLabel);
           mainFrame.add(controlPanel);
-          mainFrame.add(petList);
-          mainFrame.add(statusLabel);
+          mainFrame.add(messageList);
+          mainFrame.add(locationLabel);
+          mainFrame.add(messageList);
           mainFrame.add(sendButton);
           mainFrame.setVisible(true);
       }
