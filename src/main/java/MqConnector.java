@@ -1,7 +1,6 @@
 import com.ibm.mq.MQException;
 import com.ibm.mq.MQMessage;
 import com.ibm.mq.MQQueueManager;
-
 import java.io.IOException;
 import java.util.Hashtable;
 
@@ -13,7 +12,7 @@ public class MqConnector {
     //MQMT_   flaga decydująca jaki message idzie
     public MqConnector() throws MQException, IOException {
 
-        Hashtable props = new Hashtable();
+        Hashtable<String,String> props = new Hashtable<>();
 
         props.put("service port", "1414");
         props.put("host name", "127.0.0.1");
