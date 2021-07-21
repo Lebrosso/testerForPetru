@@ -1,10 +1,15 @@
+import com.ibm.mq.MQException;
+
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
 public class TesterGui {
 
+    private MqConnector client;
     private JFrame mainFrame;
     private JLabel headerLabel;
     private JLabel locationLabel;
@@ -40,6 +45,15 @@ public class TesterGui {
           locationLabel.setSize(350,100);
 
           JButton sendButton = new JButton("Send message");
+          sendButton.addActionListener(new ActionListener(){
+              public void actionPerformed(ActionEvent e){
+                  try {
+                      new MqConnector();
+                  } catch (MQException mqException) {
+                      mqException.printStackTrace();
+                  }
+              }
+          });
 
           controlPanel = new JPanel();
           controlPanel.setLayout(new FlowLayout());
