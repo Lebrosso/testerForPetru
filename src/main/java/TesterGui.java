@@ -21,6 +21,8 @@ public class TesterGui {
     private JLabel portLabel;
     private JLabel managerNameLabel;
     private JLabel queueNameLabel;
+    private JLabel userIdLabel;
+    private JLabel userPasswordLabel;
     private MqConnector mqConnector;
 
       public TesterGui() throws MQException, IOException {
@@ -52,16 +54,14 @@ public class TesterGui {
 
           portLabel = new JLabel("Insert port number", JLabel.CENTER);
           portLabel.setBackground(new Color(3,56,7,8));
+          JTextField portNumber = new JTextField(5);
 
           messageLabel = new JLabel("Type in the message", JLabel.CENTER);
           messageLabel.setPreferredSize(new Dimension(40,30));
+          JTextField messageContent = new JTextField(20);
 
           JTextField serverLocation = new JTextField(15);
           String[] messageTypes = { MessageType.REQUEST.name(),MessageType.RESPONSE.name(),MessageType.REPLY.name(),MessageType.DATAGRAM.name(),MessageType.REPORT.name()};
-
-          JTextField messageContent = new JTextField(20);
-
-          JTextField portNumber = new JTextField(5);
 
           managerNameLabel = new JLabel("Type in the manager name", JLabel.CENTER);
           managerNameLabel.setPreferredSize(new Dimension(40,30));
@@ -70,6 +70,14 @@ public class TesterGui {
           queueNameLabel = new JLabel("Type in queue name", JLabel.CENTER);
           queueNameLabel.setPreferredSize(new Dimension(40,30));
           JTextField queueName = new JTextField(5);
+
+          userIdLabel = new JLabel("Type in the user id", JLabel.CENTER);
+          userIdLabel.setPreferredSize(new Dimension(40,30));
+          JTextField userId = new JTextField(5);
+
+          userPasswordLabel = new JLabel("Type in the user password", JLabel.CENTER);
+          userPasswordLabel.setPreferredSize(new Dimension(40,30));
+          JTextField userPassField = new JTextField(5);
 
           JComboBox messageList = new JComboBox(messageTypes);
           messageList.setPreferredSize(new Dimension(20,69));
@@ -93,16 +101,31 @@ public class TesterGui {
 
           innerPanel.add(messageTypeLabel);
           innerPanel.add(messageList);
+
           innerPanel.add(locationLabel);
           innerPanel.add(serverLocation);
+
           innerPanel.add(messageLabel);
           innerPanel.add(messageContent);
+
           innerPanel.add(portLabel);
           innerPanel.add(portNumber);
+
           innerPanel.add(managerNameLabel);
           innerPanel.add(managerName);
+
           innerPanel.add(queueNameLabel);
           innerPanel.add(queueName);
+
+          innerPanel.add(userIdLabel);
+          innerPanel.add(userId);
+
+          innerPanel.add(userPasswordLabel);
+          innerPanel.add(userPassField);
+
+          innerPanel.add(queueNameLabel);
+          innerPanel.add(queueName);
+
           innerPanel.add(sendButton);
 
           mainFrame.add(innerPanel);
