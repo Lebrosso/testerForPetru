@@ -63,6 +63,14 @@ public class TesterGui {
 
           JTextField portNumber = new JTextField(5);
 
+          managerNameLabel = new JLabel("Type in the manager name", JLabel.CENTER);
+          managerNameLabel.setPreferredSize(new Dimension(40,30));
+          JTextField managerName = new JTextField(5);
+
+          queueNameLabel = new JLabel("Type in queue name", JLabel.CENTER);
+          queueNameLabel.setPreferredSize(new Dimension(40,30));
+          JTextField queueName = new JTextField(5);
+
           JComboBox messageList = new JComboBox(messageTypes);
           messageList.setPreferredSize(new Dimension(20,69));
           messageList.setSelectedIndex(0);
@@ -74,7 +82,7 @@ public class TesterGui {
                       Hashtable<String,String> props = new Hashtable<>();
                       props.put("service port", portNumber.getText());
                       props.put("host name", serverLocation.getText());
-                      mqConnector.sendMessage(messageContent.getText(),null,"testManager","testQueue", props);
+                      mqConnector.sendMessage(messageContent.getText(),null, managerName.getText(), queueName.getText(), props);
                   } catch (MQException mqException) {
                       mqException.printStackTrace();
                   } catch (IOException ioException) {
@@ -91,6 +99,10 @@ public class TesterGui {
           innerPanel.add(messageContent);
           innerPanel.add(portLabel);
           innerPanel.add(portNumber);
+          innerPanel.add(managerNameLabel);
+          innerPanel.add(managerName);
+          innerPanel.add(queueNameLabel);
+          innerPanel.add(queueName);
           innerPanel.add(sendButton);
 
           mainFrame.add(innerPanel);
