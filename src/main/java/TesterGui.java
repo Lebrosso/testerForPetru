@@ -23,16 +23,16 @@ public class TesterGui {
     private JLabel queueNameLabel;
     private JLabel userIdLabel;
     private JLabel userPasswordLabel;
-    private MqConnector mqConnector;
+    private TesterController testerController;
+
 
       public TesterGui() throws MQException, IOException {
 
           mainFrame = new JFrame("IBMMQ tester");
-          mqConnector = new MqConnector();
-          mainFrame.setSize(600,400);
+          mainFrame.setSize(700,500);
 
           JPanel innerPanel = new JPanel();
-          innerPanel.setLayout(new GridLayout(6,8));
+          innerPanel.setLayout(new GridLayout(5,8));
 
           mainFrame.addWindowListener(new WindowAdapter() {
               public void windowClosing(WindowEvent windowEvent){
@@ -84,13 +84,22 @@ public class TesterGui {
           messageList.setSelectedIndex(0);
 
           JButton sendButton = new JButton("Send message");
+
           sendButton.addActionListener(new ActionListener(){
               public void actionPerformed(ActionEvent e){
                   try {
                       Hashtable<String,String> props = new Hashtable<>();
                       props.put("service port", portNumber.getText());
                       props.put("host name", serverLocation.getText());
-                      mqConnector.sendMessage(messageContent.getText(),null, managerName.getText(), queueName.getText(), props);
+                      props.put("userid", userId.getText());
+                      props.put("password", userPassField.getText());
+                      testerController.sendMessage(messageContent.getText(),null, managerName.getText(), queueName.getText(), props);
+                       /*
+                           “channel name” - the element used to transfer messages between queues
+                           “queue manager name” - the name of the element (it’s a logical entity) that handles the connection with the tested queue
+                           “queue name” - the specific queue we are testing, our target of message exchanging
+                           queue manager name
+                       */
                   } catch (MQException mqException) {
                       mqException.printStackTrace();
                   } catch (IOException ioException) {
