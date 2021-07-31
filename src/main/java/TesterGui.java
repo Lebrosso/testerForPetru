@@ -28,6 +28,8 @@ public class TesterGui {
 
       public TesterGui() throws MQException, IOException {
 
+          testerController = new TesterController();
+
           mainFrame = new JFrame("IBMMQ tester");
           mainFrame.setSize(700,500);
 
