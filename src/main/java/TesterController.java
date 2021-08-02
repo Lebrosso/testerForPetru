@@ -14,5 +14,4 @@ public class TesterController {
         mqConnector.sendMessage(message, header, managerName, queueName, props);
     }
 
-
 }
