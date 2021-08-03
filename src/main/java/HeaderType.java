@@ -1,4 +1,4 @@
-public enum Headers {
+public enum HeaderType {
     MQRFH,
     MQRFH2,
     MQCIH,

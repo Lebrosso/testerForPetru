@@ -24,6 +24,7 @@ public class TesterGui {
     private JLabel userIdLabel;
     private JLabel userPasswordLabel;
     private TesterController testerController;
+    private JLabel channelNameLabel;
 
 
       public TesterGui() throws MQException, IOException {
@@ -31,7 +32,9 @@ public class TesterGui {
           testerController = new TesterController();
 
           mainFrame = new JFrame("IBMMQ tester");
-          mainFrame.setSize(700,500);
+          int windowWidth;
+          int windowHeight;
+          mainFrame.setSize(900,500);
 
           JPanel innerPanel = new JPanel();
           innerPanel.setLayout(new GridLayout(5,8));
@@ -69,6 +72,10 @@ public class TesterGui {
           managerNameLabel.setPreferredSize(new Dimension(40,30));
           JTextField managerName = new JTextField(5);
 
+          channelNameLabel = new JLabel("Type in the channel name", JLabel.CENTER);
+          channelNameLabel.setPreferredSize(new Dimension(40,30));
+          JTextField channelName = new JTextField(5);
+
           queueNameLabel = new JLabel("Type in queue name", JLabel.CENTER);
           queueNameLabel.setPreferredSize(new Dimension(40,30));
           JTextField queueName = new JTextField(5);
@@ -91,17 +98,14 @@ public class TesterGui {
               public void actionPerformed(ActionEvent e){
                   try {
                       Hashtable<String,String> props = new Hashtable<>();
-                      props.put("service port", portNumber.getText());
-                      props.put("host name", serverLocation.getText());
                       props.put("userid", userId.getText());
                       props.put("password", userPassField.getText());
+                      props.put("service port", portNumber.getText());
+                      props.put("channel name", channelName.getText());
+                      props.put("queue manager name", managerName.getText());
+                      props.put("queue name", queueName.getText());
                       testerController.sendMessage(messageContent.getText(),null, managerName.getText(), queueName.getText(), props);
-                       /*
-                           “channel name” - the element used to transfer messages between queues
-                           “queue manager name” - the name of the element (it’s a logical entity) that handles the connection with the tested queue
-                           “queue name” - the specific queue we are testing, our target of message exchanging
-                           queue manager name
-                       */
+
                   } catch (MQException mqException) {
                       mqException.printStackTrace();
                   } catch (IOException ioException) {
@@ -109,6 +113,9 @@ public class TesterGui {
                   }
               }
           });
+
+          innerPanel.add(queueName);
+          innerPanel.add(queueNameLabel);
 
           innerPanel.add(messageTypeLabel);
           innerPanel.add(messageList);
@@ -136,6 +143,9 @@ public class TesterGui {
 
           innerPanel.add(queueNameLabel);
           innerPanel.add(queueName);
+
+          innerPanel.add(channelNameLabel);
+          innerPanel.add(channelName);
 
           innerPanel.add(sendButton);
 
