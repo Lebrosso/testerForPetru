@@ -1,10 +1,12 @@
 import com.ibm.mq.MQException;
 import javax.swing.*;
+import javax.swing.filechooser.FileSystemView;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.io.File;
 import java.io.IOException;
 import java.util.Hashtable;
 
@@ -25,6 +27,8 @@ public class TesterGui {
     private JLabel userPasswordLabel;
     private TesterController testerController;
     private JLabel channelNameLabel;
+    private JLabel fileChoserLabel;
+    private JFileChooser fileChooser;
 
 
       public TesterGui() throws MQException, IOException {
@@ -34,7 +38,7 @@ public class TesterGui {
           mainFrame = new JFrame("IBMMQ tester");
           int windowWidth;
           int windowHeight;
-          mainFrame.setSize(900,500);
+          mainFrame.setSize(1200,800);
 
           JPanel innerPanel = new JPanel();
           innerPanel.setLayout(new GridLayout(5,8));
@@ -92,7 +96,20 @@ public class TesterGui {
           messageList.setPreferredSize(new Dimension(20,69));
           messageList.setSelectedIndex(0);
 
+          fileChoserLabel = new JLabel("Type in the user id", JLabel.CENTER);
+          fileChoserLabel.setPreferredSize(new Dimension(40,30));
+          fileChooser = new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());
+
+         // int returnValue = fileChooser.showOpenDialog(null);
+          // int returnValue = jfc.showSaveDialog(null);
+
+       //   if (returnValue == JFileChooser.APPROVE_OPTION) {
+         //     File selectedFile = fileChooser.getSelectedFile();
+         //    System.out.println(selectedFile.getAbsolutePath());
+        //  }
+
           JButton sendButton = new JButton("Send message");
+          JButton fileChooserButton = new JButton("pick a file");
 
           sendButton.addActionListener(new ActionListener(){
               public void actionPerformed(ActionEvent e){
@@ -102,7 +119,7 @@ public class TesterGui {
                       props.put("password", userPassField.getText());
                       props.put("service port", portNumber.getText());
                       props.put("channel name", channelName.getText());
-                      props.put("queue manager name", managerName.getText());
+                      props.put("mq_manager", managerName.getText());
                       props.put("queue name", queueName.getText());
                       testerController.sendMessage(messageContent.getText(),null, managerName.getText(), queueName.getText(), props);
 
@@ -111,6 +128,19 @@ public class TesterGui {
                   } catch (IOException ioException) {
                       ioException.printStackTrace();
                   }
+              }
+          });
+
+          fileChooserButton.addActionListener(new ActionListener(){
+              public void actionPerformed(ActionEvent e){
+                  int returnValue = fileChooser.showOpenDialog(null);
+                  // int returnValue = jfc.showSaveDialog(null);
+
+                  if (returnValue == JFileChooser.APPROVE_OPTION) {
+                      File selectedFile = fileChooser.getSelectedFile();
+                      System.out.println(selectedFile.getAbsolutePath());
+                  }
+
               }
           });
 
@@ -146,6 +176,9 @@ public class TesterGui {
 
           innerPanel.add(channelNameLabel);
           innerPanel.add(channelName);
+
+          innerPanel.add(fileChoserLabel);
+          innerPanel.add(fileChooserButton);
 
           innerPanel.add(sendButton);
 
