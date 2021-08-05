@@ -114,15 +114,7 @@ public class TesterGui {
           sendButton.addActionListener(new ActionListener(){
               public void actionPerformed(ActionEvent e){
                   try {
-                      Hashtable<String,String> props = new Hashtable<>();
-                      props.put("userid", userId.getText());
-                      props.put("password", userPassField.getText());
-                      props.put("service port", portNumber.getText());
-                      props.put("channel name", channelName.getText());
-                      props.put("queue manager name", managerName.getText());
-                      props.put("queue name", queueName.getText());
-                      testerController.sendMessage(messageContent.getText(),null, managerName.getText(), queueName.getText(), props);
-
+                      testerController.sendMessage(messageContent.getText(),null, managerName.getText(), queueName.getText(), null);
                   } catch (MQException mqException) {
                       mqException.printStackTrace();
                   } catch (IOException ioException) {
