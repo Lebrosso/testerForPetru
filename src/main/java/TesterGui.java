@@ -96,7 +96,7 @@ public class TesterGui {
           messageList.setPreferredSize(new Dimension(20,69));
           messageList.setSelectedIndex(0);
 
-          fileChoserLabel = new JLabel("Type in the user id", JLabel.CENTER);
+          fileChoserLabel = new JLabel("File picker for csv and xml files. ", JLabel.CENTER);
           fileChoserLabel.setPreferredSize(new Dimension(40,30));
           fileChooser = new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());
 
@@ -119,7 +119,7 @@ public class TesterGui {
                       props.put("password", userPassField.getText());
                       props.put("service port", portNumber.getText());
                       props.put("channel name", channelName.getText());
-                      props.put("mq_manager", managerName.getText());
+                      props.put("queue manager name", managerName.getText());
                       props.put("queue name", queueName.getText());
                       testerController.sendMessage(messageContent.getText(),null, managerName.getText(), queueName.getText(), props);
 
@@ -134,7 +134,6 @@ public class TesterGui {
           fileChooserButton.addActionListener(new ActionListener(){
               public void actionPerformed(ActionEvent e){
                   int returnValue = fileChooser.showOpenDialog(null);
-                  // int returnValue = jfc.showSaveDialog(null);
 
                   if (returnValue == JFileChooser.APPROVE_OPTION) {
                       File selectedFile = fileChooser.getSelectedFile();
