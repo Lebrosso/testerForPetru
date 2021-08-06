@@ -14,7 +14,10 @@ import java.util.Hashtable;
     /*
     /  When MQ client and mq server reside in the same
     /  location a connection must run in a client mode.
+    /  Using mqEnvironment.hostname turns on a client mode.
+    /  There is also a bindings mode.
     */
+
 public class MqConnector {
 
     public MqConnector(){
@@ -27,8 +30,7 @@ public class MqConnector {
     }
 
     public void sendMessage(String message, Header header, String managerName, String queueName, Hashtable<String,String> props) throws IOException, MQException {
-        // CMQC.TRANSPORT_MQSERIES_CLIENT
-        // CMQC.TRANSPORT_PROPERTY
+
         MQQueueManager mqQueueManager = new MQQueueManager(managerName);
         MQMessage mqMessage = new MQMessage();
         mqMessage.writeString(message);
