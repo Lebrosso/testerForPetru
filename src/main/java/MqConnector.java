@@ -20,8 +20,17 @@ import java.util.Hashtable;
 
 public class MqConnector {
 
+    ConnectionProperties props;
+
     public MqConnector(){
+       // props = new ConnectionProperties();
         MQEnvironment mqEnvironment = new MQEnvironment();
+       // mqEnvironment.hostname = props.getHostname();
+       // mqEnvironment.channel = props.getChannel();
+       // mqEnvironment.port = props.getPort();
+        //mqEnvironment.userID = props.getUserID();
+       // mqEnvironment.password = props.getPassword();
+
         mqEnvironment.hostname = "localhost";
         mqEnvironment.channel = "DEV.APP.SVRCONN";
         mqEnvironment.port = 1414;
