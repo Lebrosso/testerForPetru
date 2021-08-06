@@ -22,15 +22,14 @@ public class MqConnector {
 
     public MqConnector(){
         MQEnvironment mqEnvironment = new MQEnvironment();
-        mqEnvironment.hostname = "127.0.0.1";
-        mqEnvironment.channel = "DEV.APP.SRVCONN";
+        mqEnvironment.hostname = "localhost";
+        mqEnvironment.channel = "DEV.APP.SVRCONN";
         mqEnvironment.port = 1414;
         mqEnvironment.userID = "app";
         mqEnvironment.password = "passw0rd";
     }
 
     public void sendMessage(String message, Header header, String managerName, String queueName, Hashtable<String,String> props) throws IOException, MQException {
-
         MQQueueManager mqQueueManager = new MQQueueManager(managerName);
         MQMessage mqMessage = new MQMessage();
         mqMessage.writeString(message);
