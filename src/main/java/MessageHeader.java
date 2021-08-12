@@ -13,7 +13,6 @@ public class MessageHeader implements MQHeader{
 
     @Override
     public void setValue(String s, Object o) {
-
     }
 
     @Override

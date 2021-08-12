@@ -9,14 +9,12 @@ import java.util.Hashtable;
 /**
  * @author jsapieja
  * Connector class using java classes for IBMMQ
+ * When MQ client and mq server reside in the same
+ * location a connection must run in a client mode.
+ * Using mqEnvironment.hostname turns on a client mode.
+ * There is also a bindings mode.
  */
 
-    /*
-    /  When MQ client and mq server reside in the same
-    /  location a connection must run in a client mode.
-    /  Using mqEnvironment.hostname turns on a client mode.
-    /  There is also a bindings mode.
-    */
 
 public class MqConnector {
 
@@ -30,6 +28,7 @@ public class MqConnector {
        // mqEnvironment.port = props.getPort();
         //mqEnvironment.userID = props.getUserID();
        // mqEnvironment.password = props.getPassword();
+        //
 
         mqEnvironment.hostname = "localhost";
         mqEnvironment.channel = "DEV.APP.SVRCONN";
