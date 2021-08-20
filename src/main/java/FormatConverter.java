@@ -3,6 +3,7 @@ import org.xml.sax.SAXException;
 import javax.xml.transform.stream.StreamSource;
 import java.io.IOException;
 
+
 public class FormatConverter {
 
      Smooks smooks;
