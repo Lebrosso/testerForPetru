@@ -28,6 +28,7 @@ public class MqConnector {
        // mqEnvironment.port = props.getPort();
         //mqEnvironment.userID = props.getUserID();
        // mqEnvironment.password = props.getPassword();
+
         //
 
         mqEnvironment.hostname = "localhost";
