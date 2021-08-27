@@ -1,5 +1,3 @@
-import com.ibm.mq.MQEnvironment;
-
 public class ConnectionProperties {
     public static ConnectionProperties instance;
     public static ConnectionProperties getInstance(){

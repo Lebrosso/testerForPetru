@@ -8,7 +8,6 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.File;
 import java.io.IOException;
-import java.util.Hashtable;
 
 /**
   /  @author jsapieja
@@ -64,6 +63,7 @@ public class TesterGui {
           portLabel = new JLabel("Insert port number", JLabel.CENTER);
           portLabel.setBackground(new Color(3,56,7,8));
           JTextField portNumber = new JTextField(5);
+          portNumber.setText("1414");
 
           messageLabel = new JLabel("Type in the message", JLabel.CENTER);
           messageLabel.setPreferredSize(new Dimension(40,30));
@@ -71,26 +71,32 @@ public class TesterGui {
 
           JTextField serverLocation = new JTextField(15);
           String[] messageTypes = { MessageType.REQUEST.name(),MessageType.RESPONSE.name(),MessageType.REPLY.name(),MessageType.DATAGRAM.name(),MessageType.REPORT.name()};
+          serverLocation.setText("localhost");
 
           managerNameLabel = new JLabel("Type in the manager name", JLabel.CENTER);
           managerNameLabel.setPreferredSize(new Dimension(40,30));
           JTextField managerName = new JTextField(5);
+          managerName.setText("QM1");
 
           channelNameLabel = new JLabel("Type in the channel name", JLabel.CENTER);
           channelNameLabel.setPreferredSize(new Dimension(40,30));
           JTextField channelName = new JTextField(5);
+          channelName.setText("DEV.APP.SVRCONN");
 
           queueNameLabel = new JLabel("Type in queue name", JLabel.CENTER);
           queueNameLabel.setPreferredSize(new Dimension(40,30));
           JTextField queueName = new JTextField(5);
+          queueName.setText("DEV.QUEUE.1");
 
           userIdLabel = new JLabel("Type in the user id", JLabel.CENTER);
           userIdLabel.setPreferredSize(new Dimension(40,30));
           JTextField userId = new JTextField(5);
+          userId.setText("app");
 
           userPasswordLabel = new JLabel("Type in the user password", JLabel.CENTER);
           userPasswordLabel.setPreferredSize(new Dimension(40,30));
           JTextField userPassField = new JTextField(5);
+          userPassField.setText("passw0rd");
 
           JComboBox messageList = new JComboBox(messageTypes);
           messageList.setPreferredSize(new Dimension(20,69));
@@ -114,6 +120,13 @@ public class TesterGui {
           sendButton.addActionListener(new ActionListener(){
               public void actionPerformed(ActionEvent e){
                   try {
+                      ConnectionProperties props = new ConnectionProperties();
+                      props.setChannel(channelName.getText());
+                      props.setHostname(serverLocation.getText());
+                      props.setPassword(userPassField.getText());
+                      props.setPort(Integer.parseInt(portNumber.getText()));
+                      props.setUserID(userId.getText());
+
                       testerController.sendMessage(messageContent.getText(),null, managerName.getText(), queueName.getText(), null);
                   } catch (MQException mqException) {
                       mqException.printStackTrace();

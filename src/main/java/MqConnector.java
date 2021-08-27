@@ -21,21 +21,19 @@ public class MqConnector {
     ConnectionProperties props;
 
     public MqConnector(){
-       // props = new ConnectionProperties();
+        props = new ConnectionProperties();
         MQEnvironment mqEnvironment = new MQEnvironment();
-       // mqEnvironment.hostname = props.getHostname();
-       // mqEnvironment.channel = props.getChannel();
-       // mqEnvironment.port = props.getPort();
-        //mqEnvironment.userID = props.getUserID();
-       // mqEnvironment.password = props.getPassword();
+        mqEnvironment.hostname = props.getHostname();
+        mqEnvironment.channel = props.getChannel();
+        mqEnvironment.port = props.getPort();
+        mqEnvironment.userID = props.getUserID();
+        mqEnvironment.password = props.getPassword();
 
-        //
-
-        mqEnvironment.hostname = "localhost";
+    /*    mqEnvironment.hostname = "localhost";
         mqEnvironment.channel = "DEV.APP.SVRCONN";
         mqEnvironment.port = 1414;
         mqEnvironment.userID = "app";
-        mqEnvironment.password = "passw0rd";
+        mqEnvironment.password = "passw0rd";  */
     }
 
     public void sendMessage(String message, Header header, String managerName, String queueName, Hashtable<String,String> props) throws IOException, MQException {
