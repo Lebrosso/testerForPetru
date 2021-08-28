@@ -76,17 +76,17 @@ public class TesterGui {
           managerNameLabel = new JLabel("Type in the manager name", JLabel.CENTER);
           managerNameLabel.setPreferredSize(new Dimension(40,30));
           JTextField managerName = new JTextField(5);
-          managerName.setText("QM1");
+          managerName.setText("QMtest");
 
           channelNameLabel = new JLabel("Type in the channel name", JLabel.CENTER);
           channelNameLabel.setPreferredSize(new Dimension(40,30));
           JTextField channelName = new JTextField(5);
-          channelName.setText("DEV.APP.SVRCONN");
+          channelName.setText("testChannel");
 
           queueNameLabel = new JLabel("Type in queue name", JLabel.CENTER);
           queueNameLabel.setPreferredSize(new Dimension(40,30));
           JTextField queueName = new JTextField(5);
-          queueName.setText("DEV.QUEUE.1");
+          queueName.setText("testQueue");
 
           userIdLabel = new JLabel("Type in the user id", JLabel.CENTER);
           userIdLabel.setPreferredSize(new Dimension(40,30));
@@ -127,7 +127,7 @@ public class TesterGui {
                       props.setPort(Integer.parseInt(portNumber.getText()));
                       props.setUserID(userId.getText());
 
-                      testerController.sendMessage(messageContent.getText(),null, managerName.getText(), queueName.getText(), null);
+                      testerController.sendMessage(messageContent.getText(), managerName.getText(), queueName.getText(), null);
                   } catch (MQException mqException) {
                       mqException.printStackTrace();
                   } catch (IOException ioException) {

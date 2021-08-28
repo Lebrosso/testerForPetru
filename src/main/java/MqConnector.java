@@ -4,7 +4,6 @@ import com.ibm.mq.MQMessage;
 import com.ibm.mq.MQQueueManager;
 import com.ibm.mq.headers.internal.Header;
 import java.io.IOException;
-import java.util.Hashtable;
 
 /**
  * @author jsapieja
@@ -29,14 +28,9 @@ public class MqConnector {
         mqEnvironment.userID = props.getUserID();
         mqEnvironment.password = props.getPassword();
 
-    /*    mqEnvironment.hostname = "localhost";
-        mqEnvironment.channel = "DEV.APP.SVRCONN";
-        mqEnvironment.port = 1414;
-        mqEnvironment.userID = "app";
-        mqEnvironment.password = "passw0rd";  */
     }
 
-    public void sendMessage(String message, Header header, String managerName, String queueName, Hashtable<String,String> props) throws IOException, MQException {
+    public void sendMessage(String message, String managerName, String queueName) throws IOException, MQException {
         MQQueueManager mqQueueManager = new MQQueueManager(managerName);
         MQMessage mqMessage = new MQMessage();
         mqMessage.writeString(message);

@@ -9,7 +9,7 @@ public class TesterController {
         mqConnector = new MqConnector();
     }
 
-    public void sendMessage(String message, Header header, String managerName, String queueName, Hashtable<String, String> props) throws IOException, MQException {
-        mqConnector.sendMessage(message, header, managerName, queueName, props);
+    public void sendMessage(String message, String managerName, String queueName, Hashtable<String, String> props) throws IOException, MQException {
+        mqConnector.sendMessage(message, managerName, queueName);
     }
 }

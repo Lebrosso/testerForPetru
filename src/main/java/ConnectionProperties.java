@@ -1,4 +1,11 @@
 public class ConnectionProperties {
+
+    private String hostname;
+    private String channel;
+    int port;
+    private String userID;
+    private String password;
+
     public static ConnectionProperties instance;
     public static ConnectionProperties getInstance(){
       if(instance == null) {
@@ -52,11 +59,5 @@ public class ConnectionProperties {
     public void setPassword(String password) {
         this.password = password;
     }
-
-    private String hostname = "localhost";
-    private String channel = "DEV.APP.SVRCONN";
-    int port = 1414;
-    private String userID = "app";
-    private String password = "passw0rd";
 
 }
