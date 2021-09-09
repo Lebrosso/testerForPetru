@@ -1,12 +1,14 @@
 public class ConnectionProperties {
 
+    private ConnectionProperties(){};
+
     private String hostname;
     private String channel;
     int port;
     private String userID;
     private String password;
-
     public static ConnectionProperties instance;
+
     public static ConnectionProperties getInstance(){
       if(instance == null) {
           instance = new ConnectionProperties();
