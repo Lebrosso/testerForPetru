@@ -20,7 +20,7 @@ public class MqConnector {
     ConnectionProperties props;
 
     public MqConnector(){
-        props = ConnectionProperties.getInstance();
+        props = new ConnectionProperties();
         MQEnvironment mqEnvironment = new MQEnvironment();
         mqEnvironment.hostname = props.getHostname();
         mqEnvironment.channel = props.getChannel();

@@ -1,4 +1,5 @@
 import com.ibm.mq.MQException;
+import com.ibm.mq.headers.internal.Header;
 import java.io.IOException;
 import java.util.Hashtable;
 

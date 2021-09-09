@@ -1,7 +1,5 @@
 public class ConnectionProperties {
 
-    private ConnectionProperties(){}
-
     private String hostname;
     private String channel;
     int port;
