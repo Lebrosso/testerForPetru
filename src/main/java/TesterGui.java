@@ -120,7 +120,7 @@ public class TesterGui {
           sendButton.addActionListener(new ActionListener(){
               public void actionPerformed(ActionEvent e){
                   try {
-                      ConnectionProperties props = new ConnectionProperties();
+                      ConnectionProperties props = ConnectionProperties.getInstance();
                       props.setChannel(channelName.getText());
                       props.setHostname(serverLocation.getText());
                       props.setPassword(userPassField.getText());

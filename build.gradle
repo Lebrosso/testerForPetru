@@ -1,0 +1,22 @@
+plugins {
+    id 'org.springframework.boot' version '2.5.2'
+    id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+    id 'java'
+}
+
+group = 'com.mqconnector'
+version = '0.0.1-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation group : 'com.ibm.mq', name: 'com.ibm.mq.allclient', version: '9.2.2.0'
+    implementation group: 'org.milyn', name: 'milyn-smooks-all', version: '1.7.1'
+    implementation group: 'io.gatling', name: 'gatling-test-framework', version: '3.6.1'
+}
+
+test {
+    useJUnitPlatform()
+}
